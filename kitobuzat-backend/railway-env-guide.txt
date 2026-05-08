@@ -1,0 +1,31 @@
+RAILWAY ENVIRONMENT VARIABLES TO SET:
+Go to Railway.app → Your Project → Variables tab
+Add these variables:
+
+NODE_ENV=production
+PORT=3000
+
+# Railway provides these automatically when you add PostgreSQL plugin:
+# DATABASE_URL=postgresql://... (Railway auto-sets this)
+# But also set individually for TypeORM:
+DB_HOST=${{Postgres.PGHOST}}
+DB_PORT=${{Postgres.PGPORT}}
+DB_NAME=${{Postgres.PGDATABASE}}
+DB_USER=${{Postgres.PGUSER}}
+DB_PASSWORD=${{Postgres.PGPASSWORD}}
+
+# Railway provides when you add Redis plugin:
+REDIS_HOST=${{Redis.REDISHOST}}
+REDIS_PORT=${{Redis.REDISPORT}}
+REDIS_PASSWORD=${{Redis.REDISPASSWORD}}
+
+JWT_ACCESS_SECRET=generate_64_char_random_string_here
+JWT_REFRESH_SECRET=generate_another_64_char_random_string_here
+JWT_ACCESS_EXPIRES=15m
+JWT_REFRESH_EXPIRES=7d
+
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USER=your@gmail.com
+MAIL_PASSWORD=your_gmail_app_password
+MAIL_FROM=KitobJoy <noreply@kitobuzat.uz>

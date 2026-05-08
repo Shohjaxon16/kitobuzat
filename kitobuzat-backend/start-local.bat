@@ -1,0 +1,19 @@
+@echo off
+echo Starting KitobJoy Backend Local Dev...
+echo.
+echo [1/4] Starting Docker services...
+docker-compose up -d
+echo.
+echo [2/4] Waiting for DB to be ready...
+timeout /t 5
+echo.
+echo [3/4] Installing dependencies...
+call npm install
+echo.
+echo [4/4] Seeding database...
+call npm run seed
+echo.
+echo ✅ Setup complete!
+echo.
+echo Starting server...
+call npm run start:dev
