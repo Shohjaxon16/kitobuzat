@@ -18,6 +18,7 @@ export class Book {
   @Column({ default: 0 }) purchaseCount: number;
   @Column('float', { default: 0 }) rating: number;
   @Column({ default: 0 }) reviewCount: number;
+  @Column({ default: false }) isFeatured: boolean;
   @ManyToOne(() => BookCategory, c => c.books) category: BookCategory;
   @CreateDateColumn() createdAt: Date;
   @UpdateDateColumn() updatedAt: Date;
