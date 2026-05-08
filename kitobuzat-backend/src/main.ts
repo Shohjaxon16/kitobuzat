@@ -13,16 +13,11 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   // Security
-  app.use(helmet());
+  // app.use(helmet());
   app.use(compression());
 
   // CORS
-  app.enableCors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
-    credentials: false,
-  });
+  app.enableCors();
 
   // Global prefix
   app.setGlobalPrefix('api/v1');
