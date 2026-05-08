@@ -3,10 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
-  static const String baseUrl = String.fromEnvironment(
-    'API_URL',
-    defaultValue: 'https://your-app.up.railway.app/api/v1',
-  );
+  static const String baseUrl = 'https://kitobuzat-production.up.railway.app/api/v1';
 
   static Future<Map<String, String>> _headers({bool auth = true}) async {
     final headers = {'Content-Type': 'application/json'};
