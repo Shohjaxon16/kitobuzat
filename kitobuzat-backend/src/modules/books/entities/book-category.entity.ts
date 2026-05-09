@@ -5,6 +5,7 @@ import { Book } from './book.entity';
 export class BookCategory {
   @PrimaryGeneratedColumn('uuid') id: string;
   @Column() name: string;
+  @Column({ unique: true }) slug: string;
   @Column({ nullable: true }) description: string;
   @OneToMany(() => Book, b => b.category) books: Book[];
 }
