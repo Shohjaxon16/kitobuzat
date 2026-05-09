@@ -30,6 +30,13 @@ export class BooksController {
   }
 
   @Public()
+  @Get('seed')
+  @ApiOperation({ summary: 'Kitoblarni bazaga to\'ldirish (Seed)' })
+  seed() {
+    return this.booksService.seed();
+  }
+
+  @Public()
   @Get(':id')
   @ApiOperation({ summary: 'Bitta kitobni ID orqali olish' })
   findOne(@Param('id') id: string) {

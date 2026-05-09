@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
+import '../../core/providers/auth_provider.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/theme/theme_provider.dart';
 
@@ -13,6 +14,8 @@ class ProfileScreen extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final colorScheme = Theme.of(context).colorScheme;
     final themeProvider = context.watch<ThemeProvider>();
+    final auth = context.watch<AuthProvider>();
+    final user = auth.user;
 
     return Scaffold(
       body: SafeArea(
@@ -70,11 +73,11 @@ class ProfileScreen extends StatelessWidget {
                   gradient: LinearGradient(colors: [AppColors.blue, AppColors.blueDark], begin: Alignment.topLeft, end: Alignment.bottomRight),
                 ),
                 alignment: Alignment.center,
-                child: Text("JT", style: GoogleFonts.playfairDisplay(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white)),
+                child: Text(user?['fullName']?.toString().substring(0, 1).toUpperCase() ?? "U", style: GoogleFonts.playfairDisplay(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white)),
               ),
               const SizedBox(height: 12),
-              const Text("Jasur Toshmatov", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              Text("jasur.t@example.uz", style: TextStyle(fontSize: 13, color: AppColors.getText2(context))),
+              Text(user?['fullName'] ?? "Foydalanuvchi", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Text(user?['email'] ?? "email@example.uz", style: TextStyle(fontSize: 13, color: AppColors.getText2(context))),
               const SizedBox(height: 30),
               // Stats Card
               Padding(
@@ -99,11 +102,17 @@ class ProfileScreen extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               // Menu items
-              _MenuItemTile(icon: Iconsax.heart, iconColor: AppColors.blue, iconBg: const Color(0x1F3B82F6), label: "Sevimlilar"),
-              _MenuItemTile(icon: Iconsax.card, iconColor: AppColors.green, iconBg: const Color(0x1F22C55E), label: "To'lov usullari"),
-              _MenuItemTile(icon: Iconsax.document_download, iconColor: AppColors.amber, iconBg: const Color(0x1FF59E0B), label: "Yuklab olinganlar"),
-              _MenuItemTile(icon: Iconsax.notification, iconColor: AppColors.purple, iconBg: const Color(0x1FA855F7), label: "Bildirishnomalar"),
-              _MenuItemTile(icon: Iconsax.logout, iconColor: AppColors.red, iconBg: const Color(0x1FEF4444), label: "Chiqish"),
+              _MenuItemTile(icon: Iconsax.heart, iconColor: AppColors.blue, iconBg: const Color(0x1F3B82F6), label: "Sevimlilar", onTap: () {}),
+              _MenuItemTile(icon: Iconsax.card, iconColor: AppColors.green, iconBg: const Color(0x1F22C55E), label: "To'lov usullari", onTap: () {}),
+              _MenuItemTile(icon: Iconsax.document_download, iconColor: AppColors.amber, iconBg: const Color(0x1FF59E0B), label: "Yuklab olinganlar", onTap: () {}),
+              _MenuItemTile(icon: Iconsax.notification, iconColor: AppColors.purple, iconBg: const Color(0x1FA855F7), label: "Bildirishnomalar", onTap: () {}),
+              _MenuItemTile(
+                icon: Iconsax.logout, 
+                iconColor: AppColors.red, 
+                iconBg: const Color(0x1FEF4444), 
+                label: "Chiqish",
+                onTap: () => auth.logout(),
+              ),
               const SizedBox(height: 100),
             ],
           ),
@@ -161,12 +170,9 @@ class __MenuItemTileState extends State<_MenuItemTile> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           curve: Curves.easeOutCubic,
-          // Hover bo'lganda biroz o'ngga (8.0) suriladi
-          transform: Matrix4.identity()
-            ..translate(_isHovered ? 8.0 : 0.0, 0.0),
           color: _pressed 
               ? Theme.of(context).colorScheme.surface.withOpacity(0.5) 
-              : (_isHovered ? Theme.of(context).colorScheme.surface.withOpacity(0.3) : Colors.transparent),
+              : Colors.transparent,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: Row(
             children: [
@@ -177,10 +183,6 @@ class __MenuItemTileState extends State<_MenuItemTile> {
                 decoration: BoxDecoration(
                   color: widget.iconBg, 
                   borderRadius: BorderRadius.circular(10),
-                  // Hover bo'lganda icon foni biroz yorishadi
-                  boxShadow: _isHovered ? [
-                    BoxShadow(color: widget.iconColor.withOpacity(0.2), blurRadius: 10, spreadRadius: 1)
-                  ] : [],
                 ),
                 child: Icon(widget.icon, color: widget.iconColor, size: 18),
               ),
@@ -197,7 +199,7 @@ class __MenuItemTileState extends State<_MenuItemTile> {
               ),
               AnimatedOpacity(
                 duration: const Duration(milliseconds: 200),
-                opacity: _isHovered ? 1.0 : 0.5,
+                opacity: 0.5,
                 child: Icon(Iconsax.arrow_right_3, color: AppColors.getText2(context), size: 18),
               ),
             ],

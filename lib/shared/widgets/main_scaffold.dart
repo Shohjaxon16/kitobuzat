@@ -5,7 +5,7 @@ import '../../features/home/home_screen.dart';
 import '../../features/library/library_screen.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/auth/login_screen.dart';
-import '../../core/theme/auth_provider.dart';
+import '../../core/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
 
@@ -26,9 +26,9 @@ class _MainScaffoldState extends State<MainScaffold> {
 
     final List<Widget> screens = [
       const HomeScreen(),
-      auth.isAuthenticated ? const LibraryScreen() : const LoginScreen(),
+      auth.isLoggedIn ? const LibraryScreen() : const LoginScreen(),
       const Center(child: Text("Qidirish (Tez kunda)")),
-      auth.isAuthenticated ? const ProfileScreen() : const LoginScreen(),
+      auth.isLoggedIn ? const ProfileScreen() : const LoginScreen(),
     ];
 
     return Scaffold(
