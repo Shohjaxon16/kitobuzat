@@ -36,7 +36,7 @@ class AuthProvider extends ChangeNotifier {
         return false;
       }
     } catch (e) {
-      _error = 'Internet bilan muammo bor';
+      _error = 'Server bilan ulanishda xatolik yuz berdi';
       _isLoading = false;
       notifyListeners();
       return false;

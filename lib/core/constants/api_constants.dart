@@ -1,5 +1,5 @@
 class ApiConstants {
-  static const String baseUrl = 'http://localhost:3000/api/v1'; // Mahalliy sinov uchun
+  static const String baseUrl = 'https://kitobuzat-production.up.railway.app/api/v1';
   static const String productionUrl = 'https://your-app.up.railway.app/api/v1';
   
   // Auth endpoints

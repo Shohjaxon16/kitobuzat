@@ -48,26 +48,24 @@ async function bootstrap() {
     prefix: '/uploads',
   });
 
-  // Swagger
-  if (process.env.NODE_ENV !== 'production') {
-    const config = new DocumentBuilder()
-      .setTitle('KitobJoy API')
-      .setDescription('Kitob sotib olish va ijaraga olish ilovasi API')
-      .setVersion('1.0')
-      .addBearerAuth(
-        { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
-        'JWT-auth',
-      )
-      .addTag('auth', 'Autentifikatsiya')
-      .addTag('books', 'Kitoblar')
-      .addTag('library', 'Kutubxona')
-      .addTag('orders', 'Buyurtmalar')
-      .addTag('payments', 'Tolovlar')
-      .addTag('upload', 'Fayl yuklash')
-      .build();
-    const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('api/docs', app, document);
-  }
+  // Swagger (Hozircha hamma muhitda yoqamiz)
+  const config = new DocumentBuilder()
+    .setTitle('KitobJoy API')
+    .setDescription('Kitob sotib olish va ijaraga olish ilovasi API')
+    .setVersion('1.0')
+    .addBearerAuth(
+      { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+      'JWT-auth',
+    )
+    .addTag('auth', 'Autentifikatsiya')
+    .addTag('books', 'Kitoblar')
+    .addTag('library', 'Kutubxona')
+    .addTag('orders', 'Buyurtmalar')
+    .addTag('payments', 'Tolovlar')
+    .addTag('upload', 'Fayl yuklash')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api/docs', app, document);
 
   const port = process.env.PORT || 3000;
   await app.listen(port, '0.0.0.0');
