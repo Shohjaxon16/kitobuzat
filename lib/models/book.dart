@@ -11,6 +11,7 @@ class Book {
   final String? pages;
   final String? expiry;
   final bool isCompleted;
+  final String? imageUrl;
 
   const Book({
     required this.title,
@@ -23,5 +24,6 @@ class Book {
     this.pages,
     this.expiry,
     this.isCompleted = false,
+    this.imageUrl,
   });
 }

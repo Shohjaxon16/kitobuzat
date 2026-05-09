@@ -67,8 +67,9 @@ class _HomeScreenState extends State<HomeScreen> {
       author: data['author'] ?? 'Noma\'lum muallif',
       coverGradient: [const Color(0xFF1D4ED8), const Color(0xFF3B82F6)],
       rating: (data['rating'] ?? 0.0).toDouble(),
-      price: data['price']?.toString() ?? '0',
-      hasRent: data['allowRent'] ?? false,
+      price: data['buyPrice']?.toString() ?? '0',
+      hasRent: data['isAvailableForRent'] ?? false,
+      imageUrl: data['coverImage'],
     );
   }
 
@@ -315,10 +316,20 @@ class _BookCard extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                  gradient: LinearGradient(colors: book.coverGradient),
+                  color: Colors.grey.withOpacity(0.1),
                 ),
-                alignment: Alignment.center,
-                child: Text(book.title, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                child: book.imageUrl != null 
+                    ? ClipRRect(
+                        borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                        child: Image.network(book.imageUrl!, fit: BoxFit.cover),
+                      )
+                    : Center(
+                        child: Text(
+                          book.title, 
+                          textAlign: TextAlign.center, 
+                          style: const TextStyle(fontWeight: FontWeight.bold)
+                        ),
+                      ),
               ),
             ),
             Padding(
