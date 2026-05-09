@@ -36,7 +36,7 @@ export class AuthService {
       fullName: dto.fullName,
       passwordHash,
       emailVerificationToken,
-      isEmailVerified: process.env.NODE_ENV === 'development',
+      isEmailVerified: true,
     });
     
     console.log('[AUTH] Saving user to database...');
@@ -49,7 +49,7 @@ export class AuthService {
   async login(dto: LoginDto) {
     const user = await this.usersRepository.findOne({ where: { email: dto.email } });
     if (!user) throw new UnauthorizedException("Email yoki parol noto'g'ri");
-    if (!user.isEmailVerified) throw new UnauthorizedException('Email tasdiqlanmagan');
+    // if (!user.isEmailVerified) throw new UnauthorizedException('Email tasdiqlanmagan');
 
     const isMatch = await bcrypt.compare(dto.password, user.passwordHash);
     if (!isMatch) throw new UnauthorizedException("Email yoki parol noto'g'ri");
