@@ -150,7 +150,7 @@ export class BooksService {
         title: 'Sapiens',
         author: 'Yuval Noah Harari',
         description: 'Insoniyatning qisqacha tarixi. Qanday qilib biz dunyo hukmdoriga aylandik?',
-        coverImage: 'https://images.unsplash.com/photo-1532012197367-2d2d1f114631?auto=format&fit=crop&q=80&w=800',
+        coverImage: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=800',
         buyPrice: 75000,
         rentPrice: 8000,
         category: ilmiy,

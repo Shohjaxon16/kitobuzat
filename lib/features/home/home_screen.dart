@@ -7,6 +7,7 @@ import '../../core/providers/books_provider.dart';
 import '../../core/providers/auth_provider.dart';
 import '../book_detail/book_detail_screen.dart';
 import '../../models/book.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -47,10 +48,13 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 _buildTopBar(authProvider.user?['fullName'] ?? 'Jasur'),
                 _buildSearchBar(),
-                _buildCategories(booksProvider),
+                _buildCategories(booksProvider).animate().fadeIn().slideX(begin: -0.2),
                 if (booksProvider.featuredBook != null)
-                  _FeaturedCard(book: _mapToBook(booksProvider.featuredBook!)),
-                _buildSectionHeader("Yangi kelganlar", "Barchasi →"),
+                  _FeaturedCard(book: _mapToBook(booksProvider.featuredBook!))
+                      .animate()
+                      .fadeIn(duration: 600.ms)
+                      .scale(begin: const Offset(0.9, 0.9)),
+                _buildSectionHeader("Yangi kelganlar", "Barchasi →").animate().fadeIn(),
                 _buildBookGrid(booksProvider.books),
                 const SizedBox(height: 100),
               ],
@@ -225,7 +229,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         itemCount: books.length,
         itemBuilder: (context, index) {
-          return _BookCard(book: _mapToBook(books[index]));
+          return _BookCard(book: _mapToBook(books[index]))
+              .animate(delay: (index * 100).ms)
+              .fadeIn(duration: 500.ms)
+              .slideY(begin: 0.2, curve: Curves.easeOutQuad);
         },
       ),
     );
