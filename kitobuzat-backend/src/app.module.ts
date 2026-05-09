@@ -41,7 +41,7 @@ import { UploadModule } from './modules/upload/upload.module';
           ? { rejectUnauthorized: false }
           : false,
         entities: [User, Book, BookCategory, UserBook, Order],
-        synchronize: config.get<string>('nodeEnv') === 'development',
+        synchronize: true, // Jadvallarni avtomatik yaratish
         logging: config.get<string>('nodeEnv') === 'development',
       }),
       inject: [ConfigService],

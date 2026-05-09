@@ -28,7 +28,7 @@ Flutter ilovasi endi backend bilan `ApiService` orqali muloqot qiladi.
 - **Library**: `LibraryProvider` foydalanuvchi kitoblari va o'qish jarayonini boshqaradi.
 
 ## 3. Railway Deployment (Qisqa qadamlar)
-1. **GitHub**: Kodni GitHub'ga push qiling.
+1. **GitHub**: Kodni GitHub'ga push qiling.i
 2. **Railway Project**: Railway'da yangi loyiha yarating va reponi bog'lang.
 3. **Database**: "New Service" -> "Database" -> "PostgreSQL" qo'shing.
 4. **Redis**: "New Service" -> "Database" -> "Redis" qo'shing.
