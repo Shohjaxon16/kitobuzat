@@ -89,7 +89,7 @@ export class BooksService {
       {
         title: '1984',
         author: 'George Orwell',
-        description: '"Katta og\'a seni kuzatmoqda". Erkinlik - bu ikki karra ikki to\'rt deya olish erkinligidir. Agar bunga ruxsat berilsa, qolgan hammasi o\'z-o'zidan kelib chiqadi.',
+        description: '"Katta og\'a seni kuzatmoqda". Erkinlik - bu ikki karra ikki to\'rt deya olish erkinligidir. Agar bunga ruxsat berilsa, qolgan hammasi o\'z-o\'zidan kelib chiqadi.',
         coverImage: 'https://images.unsplash.com/photo-1543004404-435756baa67d?auto=format&fit=crop&q=80&w=800',
         buyPrice: 38000,
         rentPrice: 4000,
